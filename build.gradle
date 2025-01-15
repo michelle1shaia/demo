@@ -45,5 +45,12 @@ dependencyManagement {
 }
 
 tasks.named('test') {
+    testLogging {
+        // Show standard output and error streams in the console
+        showStandardStreams = true
+
+        // Log events at lifecycle level
+        events("passed", "skipped", "failed")
+    }
     useJUnitPlatform()
 }
