@@ -15,7 +15,6 @@ public class Cat {
     private String breed;
     private int age;
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
