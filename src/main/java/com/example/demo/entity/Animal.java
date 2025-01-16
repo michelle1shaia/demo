@@ -87,5 +87,9 @@ public abstract class Animal {
         this.age = age;
     }
 
+    // public AdoptedAnimal adopt(long adopterId) {
+
+    // }
+
 
 }

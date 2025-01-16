@@ -1,11 +1,14 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Animal;
 import com.example.demo.entity.Cat;
 import com.example.demo.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -24,6 +27,19 @@ public class CatController {
         Cat newCat = catService.saveCat(cat);
         logger.info("added Cat: {}", newCat);
         return newCat;
+    }
+
+    
+    @PostMapping
+    public List<Cat> addCats(@RequestBody List<Cat> cats) {
+        List<Cat> newCats = new ArrayList<Cat>();
+
+        for (Cat cat : cats) {
+            Cat newCat = catService.saveCat(cat);
+            logger.info("added Cat: {}", newCat);
+            newCats.add(newCat);
+        }
+        return newCats;
     }
 
     @GetMapping

@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Person {
 
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,9 +39,18 @@ public class Person {
     public String getAddress() {
         return address;
     }
-
+    
     public void setAdress(String address) {
         this.address = address;
     }
     
+    @Override
+    public String toString() {
+        return "{" +
+            " id:'" + id + ",\n" +
+            "name:'" + name + ",\n" +
+            "phoneNumber:'" + phoneNumber + ",\n" +
+            "address:'" + address + "\n" +
+            "}";
+    }
 }

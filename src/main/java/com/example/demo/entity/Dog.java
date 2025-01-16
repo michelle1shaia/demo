@@ -24,8 +24,9 @@ public class Dog extends Animal{
     // toString Method
     @Override
     public String toString() {
-        String tamed = isTamed? "is" : "is not";
-        return String.format("Dog: \n %s \n%s tamed!",super.toString(), tamed) ;
+        String tamed = isTamed? "is tamed" : "is not tamed";
+
+        return String.format("Dog: \n %s \n%s",super.toString(), tamed) ;
     }
 }
 
