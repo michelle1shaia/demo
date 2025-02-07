@@ -1,11 +1,14 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Animal;
 import com.example.demo.entity.Cat;
 import com.example.demo.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,8 +24,22 @@ public class CatController {
 
     @PostMapping
     public Cat addCat(@RequestBody Cat cat) {
-        logger.info("add Cat: {}", cat);
-        return catService.saveCat(cat);
+        Cat newCat = catService.saveCat(cat);
+        logger.info("added Cat: {}", newCat);
+        return newCat;
+    }
+
+    
+    @PostMapping
+    public List<Cat> addCats(@RequestBody List<Cat> cats) {
+        List<Cat> newCats = new ArrayList<Cat>();
+
+        for (Cat cat : cats) {
+            Cat newCat = catService.saveCat(cat);
+            logger.info("added Cat: {}", newCat);
+            newCats.add(newCat);
+        }
+        return newCats;
     }
 
     @GetMapping
@@ -32,7 +49,9 @@ public class CatController {
 
     @DeleteMapping
     public void deleteCat(@RequestParam("id") Long id) {
-        logger.info("delete Cat: {}", id);
+        Cat catToDel = catService.getCatById(id);
+        logger.info("deleting Cat: {}... with name {}", id, catToDel.getName());
         catService.deleteCat(id);
+        logger.info("deleted Cat: {}", id);
     }
 }

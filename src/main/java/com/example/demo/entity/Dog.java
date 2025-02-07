@@ -6,23 +6,29 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Cat extends Animal {
+public class Dog extends Animal{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // private Long id;
+    // private String name;
+    // private String breed;
+    // private int age;
+    private boolean isTamed;
 
+    
+    public boolean isTamed() {
+        return isTamed;
+    }
     
     // toString Method
     @Override
     public String toString() {
-        return String.format("Cat: \n %s",super.toString()) ;
+        String tamed = isTamed? "is tamed" : "is not tamed";
+
+        return String.format("Dog: \n %s \n%s",super.toString(), tamed) ;
     }
 }
-
-// private Long id;
-// private String name;
-// private String breed;
-// private int age;
 
 // public Long getId() {
 //     return id;
